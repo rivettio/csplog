@@ -22,3 +22,13 @@ func InitKafka() (client sarama.SyncProducer, err error) {
 	logs.Error("init kafka success")
 	return
 }
+
+func InitKafkaConsumer() (consumer sarama.Consumer, err error) {
+	consumer, err = sarama.NewConsumer(LogConfAll.KafkaConf.KafkaAddr, nil)
+	if err != nil {
+		err = fmt.Errorf("Failed to start consumer: %s", err)
+		return
+	}
+	logs.Error("init kafka Consumer success")
+	return
+}
